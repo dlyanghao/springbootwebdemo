@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import work.yanghao.domain.User;
 import work.yanghao.mapper.UserMapper;
 
+import java.util.List;
+
 /**
  * mybatis 3.4以上版本省略了映射文件(xml),直接在接口处标注一个注解@Mapper写上对应的数据库语句
  */
@@ -25,7 +27,7 @@ public class UserService {
         }
     }
 
-    public User getUser(Integer id){
+    public User getUser(String id){
         User user = null;
         try {
             user = userMapper.findUser(id);
@@ -35,12 +37,14 @@ public class UserService {
         return user;
     }
 
-    public void getAllUsers(){
+    public List<User> getAllUsers(){
+        List<User> list = null;
         try {
-            userMapper.findUsers();
+            list = userMapper.findUsers();
         } catch (UserException e) {
             e.printStackTrace();
         }
+        return list;
     }
 
     public void updateUser(User user){
@@ -51,7 +55,7 @@ public class UserService {
         }
     }
 
-    public void deleteUser(Integer id){
+    public void deleteUser(String id){
         try {
             userMapper.removeUser(id);
         } catch (UserException e) {

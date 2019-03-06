@@ -8,7 +8,7 @@
 	</parameterMap>
 
 	<!--id与dao接口的方法名一直，指定结果类型，和参数类型 -->
-	<select id="findUser" parameterType="int" resultType = "work.yanghao.domain.User">
+	<select id="findUser" parameterType="java.lang.String" resultType = "work.yanghao.domain.User">
 		select * from user where id=#{id}
 	</select>
 	<select id="findUsers" resultType="work.yanghao.domain.User">
@@ -16,7 +16,7 @@
 	</select>
 	
 	<insert id="addUser" parameterType="work.yanghao.domain.User">
-		insert into user(username,age)
+		insert into user(name,age)
 		values(#{userName},#{age})
 	</insert>
 	
@@ -26,7 +26,7 @@
 		where u.id=#{id}
 	</update>
 
-	<delete id="removeUser" parameterType="int">
+	<delete id="removeUser" parameterType="java.lang.String">
 		delete from user where id=#{value} 
 	</delete>
 

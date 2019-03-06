@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import work.yanghao.domain.User;
 import work.yanghao.service.UserService;
 
+import java.util.List;
+
 @Controller
 public class UserController {
 
@@ -15,35 +17,44 @@ public class UserController {
 
     @RequestMapping("/login")
     public String login(Model model){
-        System.out.println("request success !");
-        model.addAttribute("username","yanghao");
-        model.addAttribute("password","123456");
+//        System.out.println("request success !");
+//        model.addAttribute("username","yanghao");
+//        model.addAttribute("password","123456");
         return "login";
     }
 
     @GetMapping("/users")
-    public String getUser(int id,Model model){
+    public String getUser(String userId,Model model){
         System.out.println("查询用户方法");
-        User user = userService.getUser(id);
-        model.addAttribute("user",user);
-        return "index";
+        if(null == userId) {
+            List<User> allUsers = userService.getAllUsers();
+            model.addAttribute("users",allUsers);
+        }
+        else {
+            User user = userService.getUser(userId);
+            model.addAttribute("user",user);
+        }
+        return "userinfo";
     }
 
-    /*@PostMapping("/users")
-    public String addUser(){
+    @PostMapping("/users")
+    public String addUser(User user){
         System.out.println("添加用户方法");
+        userService.addUser(user);
         return "index";
     }
 
     @DeleteMapping("/users")
-    public String deleteUser(){
+    public String deleteUser(String id){
         System.out.println("删除用户方法");
+        userService.deleteUser(id);
         return "index";
     }
 
     @PutMapping("/users")
-    public String updateUser(){
+    public String updateUser(User user){
         System.out.println("更新用户方法");
+        userService.updateUser(user);
         return "index";
-    }*/
+    }
 }
