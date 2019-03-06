@@ -6,7 +6,6 @@ import work.yanghao.domain.User;
 
 import java.util.List;
 
-
 public interface UserMapper {
 	
 	int addUser(User user) throws UserException;
@@ -14,6 +13,10 @@ public interface UserMapper {
 	int removeUser(Integer id) throws UserException;
 	
 	int updateUser(User user) throws UserException;
-	
+
+	User findUser(Integer id) throws UserException;
+
 	List<User> findUsers() throws UserException;
+
+	int romoveAllUsers() throws UserException;
 }

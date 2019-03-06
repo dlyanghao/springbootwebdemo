@@ -21,7 +21,6 @@ public class WebApplicationConfigure implements WebMvcConfigurer {
     @Override
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("").setViewName("index");
-
     }
 
 
