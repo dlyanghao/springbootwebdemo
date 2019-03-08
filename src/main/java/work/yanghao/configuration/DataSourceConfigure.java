@@ -40,8 +40,7 @@ public class DataSourceConfigure {
         dataSource.setPassword(password);
         dataSource.setMaxActive(20);
         dataSource.setMinIdle(10);
-        dataSource.setDefaultAutoCommit(false);
+        dataSource.setDefaultAutoCommit(true);
         return dataSource;
     }
-
 }

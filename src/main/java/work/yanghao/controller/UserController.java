@@ -45,7 +45,7 @@ public class UserController {
     }
 
     @DeleteMapping("/users")
-    public String deleteUser(String id){
+    public String deleteUser(@RequestBody String id){
         System.out.println("删除用户方法");
         userService.deleteUser(id);
         return "index";
